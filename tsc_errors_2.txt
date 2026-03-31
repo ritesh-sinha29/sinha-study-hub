@@ -1,9 +1,0 @@
-src/app/(main)/dashboard/page.tsx(232,18): error TS2741: Property 'to' is missing in type '{ children: Element[]; href: string; className: string; }' but required in type '{ to: string; href?: string | undefined; }'.
-src/app/(main)/dashboard/page.tsx(241,18): error TS2741: Property 'to' is missing in type '{ children: Element[]; href: string; className: string; }' but required in type '{ to: string; href?: string | undefined; }'.
-src/app/(main)/department/[departmentId]/page.tsx(4,40): error TS2307: Cannot find module '../../../lib/router' or its corresponding type declarations.
-src/app/(main)/year/[yearId]/page.tsx(3,46): error TS2307: Cannot find module '../../../lib/router' or its corresponding type declarations.
-src/app/(main)/year/[yearId]/semester/[semesterId]/page.tsx(3,33): error TS2307: Cannot find module '../../../../../lib/router' or its corresponding type declarations.
-src/app/(main)/year/[yearId]/semester/[semesterId]/subject/[subjectId]/page.tsx(4,33): error TS2307: Cannot find module '../../../../../../../lib/router' or its corresponding type declarations.
-src/app/(main)/year/[yearId]/semester/[semesterId]/subject/[subjectId]/page.tsx(21,20): error TS2307: Cannot find module '../../../../../../../utils/cn' or its corresponding type declarations.
-src/app/(main)/year/[yearId]/semester/[semesterId]/subject/[subjectId]/page.tsx(22,34): error TS2307: Cannot find module '../../../../../../../store/resourceStore' or its corresponding type declarations.
-src/app/(main)/year/[yearId]/semester/[semesterId]/subject/[subjectId]/page.tsx(23,28): error TS2307: Cannot find module '../../../../../../../components/CommentSection' or its corresponding type declarations.
