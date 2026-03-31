@@ -1,36 +1,164 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SINHA'S STUDY HUB - GTU Resources Platform
+
+A comprehensive study resource platform for GTU (Gujarat Technological University) students, built with React, TypeScript, and modern web technologies.
+
+## Features
+
+### 🎯 Enhanced Key Button Functionality
+- **Interactive Year Cards**: All year cards on the home page are now fully functional with:
+  - Click navigation to respective year pages
+  - Hover effects with smooth animations
+  - Statistics display (students, resources, subjects)
+  - Visual feedback and transitions
+  - Responsive design for all screen sizes
+
+### 🔍 Search Functionality with OK Button
+- **Navbar Search**: Added OK button to the main navigation search bar
+  - Real-time search input with validation
+  - Enter key support for quick search
+  - Disabled state when search is empty
+  - Mobile-responsive design
+  - Direct navigation to Resources page with search query
+
+- **Resources Page Search**: Enhanced search bar with OK button
+  - Integrated with existing filter system
+  - URL parameter support for deep linking
+  - Keyboard navigation support
+
+### 🎨 Interactive Elements
+- **Hover Effects**: All interactive elements now have smooth hover animations
+- **Click Handlers**: Proper navigation and state management
+- **Visual Feedback**: Loading states, disabled states, and success indicators
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
+
+### Interactive Features
+- **Comment System**: Add comments and replies to resources with voting functionality
+- **Community Discussions**: Create and participate in subject-specific discussions
+- **Voting System**: Like/dislike comments and discussions with user-specific tracking
+- **Favorites**: Save and manage favorite resources
+- **User Profiles**: View activity history and achievements
+
+### Voting System
+The platform implements a robust voting system that ensures:
+- **One Vote Per User**: Each user can only vote once per comment or discussion
+- **Vote Toggle**: Users can remove their vote by clicking the same button again
+- **Vote Change**: Users can change their vote from upvote to downvote (or vice versa)
+- **Visual Feedback**: Current vote state is visually indicated with colored icons
+- **Real-time Updates**: Vote counts update immediately across all components
+
+## Technology Stack
+
+- **Frontend**: React 18 with TypeScript
+- **Styling**: Tailwind CSS with custom design system
+- **State Management**: Zustand for global state
+- **Routing**: React Router v6
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+- **Package Manager**: npm
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js (v16 or higher)
+- npm (comes with Node.js)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd project
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   └── layout/         # Layout components (Navbar, Footer)
+├── pages/              # Page components
+│   ├── auth/           # Authentication pages
+│   └── ...             # Other pages
+├── store/              # Zustand stores
+├── utils/              # Utility functions
+└── main.tsx           # Application entry point
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features Implemented
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Search Functionality
+- **Navbar Search**: Global search with OK button
+- **Resources Search**: Advanced filtering and search
+- **URL Integration**: Search queries persist in URL
+- **Keyboard Support**: Enter key navigation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Interactive Navigation
+- **Year Cards**: Fully functional with statistics
+- **Navigation Buttons**: Proper routing and state management
+- **Mobile Menu**: Responsive navigation with search
+- **Theme Toggle**: Dark/light mode switching
 
-## Learn More
+### User Experience
+- **Loading States**: Visual feedback for user actions
+- **Hover Effects**: Smooth animations and transitions
+- **Responsive Design**: Mobile-first approach
+- **Accessibility**: Keyboard navigation and screen reader support
 
-To learn more about Next.js, take a look at the following resources:
+## State Management
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application uses Zustand for state management with three main stores:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **authStore**: Manages user authentication and profile data
+- **resourceStore**: Handles resources, comments, favorites, and voting
+- **themeStore**: Manages theme preferences and dark/light mode
 
-## Deploy on Vercel
+## Voting Implementation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The voting system is implemented across multiple components:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **CommentSection**: For resource comments with nested replies
+2. **Community**: For discussion posts and comments
+3. **ResourceStore**: Centralized vote tracking and logic
+
+Each vote is tracked with:
+- User ID for identification
+- Vote type (up/down/null)
+- Timestamp for audit trails
+- Real-time count updates
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Support
+
+For support and questions, please open an issue in the repository. 
