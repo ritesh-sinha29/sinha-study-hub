@@ -94,83 +94,21 @@ interface AnalyticsState extends Analytics {
 }
 
 const defaultAnalytics: Analytics = {
-    totalUsers: 3,
-    totalDownloads: 195, // Sum of all resource downloads
-    totalResources: 5,
-    averageRating: 4.46, // Average of all resource ratings
+    totalUsers: 0,
+    totalDownloads: 0,
+    totalResources: 0,
+    averageRating: 0,
     departmentStats: {
-        computer: { students: 3, resources: 5, subjects: 15 },
-        civil: { students: 0, resources: 0, subjects: 12 },
-        chemical: { students: 0, resources: 0, subjects: 10 },
-        electrical: { students: 0, resources: 0, subjects: 13 },
-        mechanical: { students: 0, resources: 0, subjects: 14 }
+        computer: { students: 0, resources: 0, subjects: 0 },
+        civil: { students: 0, resources: 0, subjects: 0 },
+        chemical: { students: 0, resources: 0, subjects: 0 },
+        electrical: { students: 0, resources: 0, subjects: 0 },
+        mechanical: { students: 0, resources: 0, subjects: 0 }
     },
-    userRegistrations: {
-        '2024-01-01': 1,
-        '2024-01-05': 1,
-        '2024-01-10': 1
-    },
-    downloadHistory: {
-        '1': 45,
-        '2': 32,
-        '3': 28,
-        '4': 67,
-        '5': 23
-    },
-    resourceRatings: {
-        '1': { totalRatings: 12, averageRating: 4.5, ratings: {} },
-        '2': { totalRatings: 8, averageRating: 4.2, ratings: {} },
-        '3': { totalRatings: 15, averageRating: 4.7, ratings: {} },
-        '4': { totalRatings: 10, averageRating: 4.3, ratings: {} },
-        '5': { totalRatings: 7, averageRating: 4.6, ratings: {} }
-    },
-    userAnalytics: {
-        'demo-user-1': {
-            resourcesUploaded: 2,
-            totalDownloads: 0,
-            totalUpvotes: 15,
-            totalDownvotes: 0,
-            studyStreak: 12,
-            lastStudyDate: new Date().toISOString().split('T')[0],
-            commentsPosted: 1,
-            helpfulComments: 1,
-            achievements: {
-                topContributor: false,
-                studyStreak: true,
-                helpfulMember: false
-            }
-        },
-        'demo-user-2': {
-            resourcesUploaded: 2,
-            totalDownloads: 0,
-            totalUpvotes: 14,
-            totalDownvotes: 0,
-            studyStreak: 5,
-            lastStudyDate: new Date().toISOString().split('T')[0],
-            commentsPosted: 2,
-            helpfulComments: 2,
-            achievements: {
-                topContributor: false,
-                studyStreak: false,
-                helpfulMember: false
-            }
-        },
-        'demo-user-3': {
-            resourcesUploaded: 1,
-            totalDownloads: 0,
-            totalUpvotes: 12,
-            totalDownvotes: 0,
-            studyStreak: 8,
-            lastStudyDate: new Date().toISOString().split('T')[0],
-            commentsPosted: 1,
-            helpfulComments: 1,
-            achievements: {
-                topContributor: false,
-                studyStreak: true,
-                helpfulMember: false
-            }
-        }
-    }
+    userRegistrations: {},
+    downloadHistory: {},
+    resourceRatings: {},
+    userAnalytics: {}
 }
 
 export const useAnalyticsStore = create<AnalyticsState>()(

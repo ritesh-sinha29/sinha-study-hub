@@ -1,0 +1,98 @@
+"use client";
+
+import { motion } from 'framer-motion'
+import { ArrowRight, BookOpen, Users } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+
+export const HeroSection = () => {
+  const router = useRouter()
+
+  return (
+    <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 text-white py-24 overflow-hidden">
+      <div className="absolute inset-0 bg-black/20"></div>
+      
+      {/* Animated background patterns */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary-400 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+              </span>
+              <span className="text-xs font-bold uppercase tracking-widest text-white/90">Trusted by 10,000+ Students</span>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight leading-[1.1]">
+              Elevate Your{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-300 animate-gradient-x">
+                GTU Journey
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-12 text-blue-50/90 leading-relaxed font-medium">
+              Your ultimate destination for curated study resources, vibrant community support, and academic excellence in engineering.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-col sm:flex-row gap-5 justify-center items-center"
+          >
+            <button
+              onClick={() => router.push('/resources')}
+              className="w-full sm:w-auto bg-white text-primary-700 px-10 py-5 rounded-2xl font-bold hover:bg-blue-50 transition-all flex items-center justify-center space-x-3 shadow-2xl shadow-primary-900/20 active:scale-95 group"
+            >
+              <span>Explore Resources</span>
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button
+              onClick={() => router.push('/auth/register')}
+              className="w-full sm:w-auto border-2 border-white/30 backdrop-blur-sm text-white px-10 py-5 rounded-2xl font-bold hover:bg-white hover:text-primary-700 transition-all flex items-center justify-center active:scale-95 shadow-xl"
+            >
+              Join Our Community
+            </button>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Floating Decorative Elements */}
+      <div className="absolute top-1/4 -left-10 opacity-30 pointer-events-none">
+        <motion.div
+          animate={{ 
+            y: [0, -30, 0],
+            rotate: [0, 10, 0]
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="p-6 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20">
+            <BookOpen className="h-12 w-12 text-white" />
+          </div>
+        </motion.div>
+      </div>
+      <div className="absolute bottom-1/4 -right-10 opacity-30 pointer-events-none">
+        <motion.div
+          animate={{ 
+            y: [0, 30, 0],
+            rotate: [0, -10, 0]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="p-8 bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
+            <Users className="h-16 w-16 text-white" />
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ConvexClientProvider } from "@/components/providers/ConvexClientProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="light" style={{ colorScheme: 'light' }} suppressHydrationWarning>
       <body className="bg-white text-gray-900">
-        <TooltipProvider>
-          {children}
-        </TooltipProvider>
+        <ConvexClientProvider>
+          <TooltipProvider>
+            {children}
+          </TooltipProvider>
+        </ConvexClientProvider>
         <Toaster
           position="top-right"
           toastOptions={{
