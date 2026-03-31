@@ -7,15 +7,12 @@ import {
   Search,
   Menu,
   X,
-  Sun,
-  Moon,
   Home,
   Users,
   FolderOpen,
   LogOut
 } from 'lucide-react'
 import { useAuthStore } from '../../store/authStore'
-import { useThemeStore } from '../../store/themeStore'
 import { useResourceStore } from '../../store/resourceStore'
 import { cn } from '../../utils/cn'
 
@@ -23,7 +20,6 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const { user, logout } = useAuthStore()
-  const { isDark, toggleTheme } = useThemeStore()
   const { searchQuery, setSearchQuery } = useResourceStore()
   const navigate = useNavigate()
   const location = useLocation()
@@ -100,13 +96,6 @@ const Navbar = () => {
 
           {/* Right Side */}
           <div className="flex items-center space-x-4">
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            >
-              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
 
             {/* Search */}
             <div className="hidden sm:flex items-center space-x-2">

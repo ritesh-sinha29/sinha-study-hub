@@ -3,18 +3,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Footer from "../../components/layout/Footer";
 import Navbar from "../../components/layout/Navbar";
-import { useThemeStore } from "../../store/themeStore";
 
 export default function MainLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isDark } = useThemeStore();
-
   return (
-    <div className={`min-h-screen ${isDark ? "dark" : ""}`}>
-      <div className="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div className="min-h-screen">
+      <div className="bg-gray-50 min-h-screen transition-colors duration-300">
         <Navbar />
         <AnimatePresence mode="wait">
           <motion.main

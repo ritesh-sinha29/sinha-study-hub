@@ -14,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
+    <html lang="en" className="light" style={{ colorScheme: 'light' }} suppressHydrationWarning>
+      <body className="bg-white text-gray-900">
         <TooltipProvider>
           {children}
         </TooltipProvider>
