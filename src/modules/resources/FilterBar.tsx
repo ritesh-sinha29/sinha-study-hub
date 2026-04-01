@@ -76,7 +76,7 @@ export const FilterBar = ({
   const viewMode = (searchParams.get('view') as 'grid' | 'list') || initialViewMode
 
   return (
-    <div className="mb-8 space-y-4">
+    <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-end gap-4">
 
         <div className="flex items-center space-x-3">

@@ -33,10 +33,15 @@ export default async function Page({ searchParams }: PageProps) {
   const viewMode = (params.view as 'grid' | 'list') || 'grid';
 
   // Fetch data from Convex on the Server
-  const allResources: any[] = await fetchQuery(api.resources.list);
+  const allResources = await fetchQuery(api.resources.list, {
+    year: year || undefined,
+    semester: semester || undefined,
+    type: type || undefined,
+    department: department || undefined,
+  });
 
   // Apply filters on the server
-  const filteredResources = allResources.filter((resource: any) => {
+  const filteredResources = (allResources || []).filter((resource: any) => {
     const q = query.toLowerCase().trim();
     const matchesSearch = !q || 
       resource.title.toLowerCase().includes(q) ||
@@ -71,38 +76,40 @@ export default async function Page({ searchParams }: PageProps) {
           <DepartmentIndicator departmentId={department} />
         )}
 
-        {/* Search and Filters Hub (Client Component) */}
-        {showListSection && (
-          <FilterBar
-            initialViewMode={viewMode}
-            initialSearch={query}
-            initialFilters={activeFilters}
-          />
-        )}
+        {/* Search, Filters and Active State Section */}
+        <div className="space-y-6 mb-10">
+          {showListSection && (
+            <FilterBar
+              initialViewMode={viewMode}
+              initialSearch={query}
+              initialFilters={activeFilters}
+            />
+          )}
 
-        {/* Resource Type Pills (Server Component) - Only in List View */}
-        {showListSection && (
-          <TypePills 
-            activeType={type} 
-            searchParams={params}
-          />
-        )}
+          {/* Resource Type Pills (Server Component) - Only in List View */}
+          {showListSection && (
+            <TypePills 
+              activeType={type} 
+              searchParams={params}
+            />
+          )}
 
-        {/* Department Pills - Only when type is selected and no department is currently selected (Server Component) */}
-        {type && showListSection && !department && (
-          <DepartmentPills 
-            activeDepartment={department} 
-            searchParams={params}
-          />
-        )}
+          {/* Department Pills - Only when type is selected and no department is currently selected (Server Component) */}
+          {type && showListSection && !department && (
+            <DepartmentPills 
+              activeDepartment={department} 
+              searchParams={params}
+            />
+          )}
 
-        {/* Active Filters Display (Server Component) */}
-        {hasActiveFilters && showListSection && (
-          <ActiveFiltersDisplay 
-            filters={activeFilters} 
-            searchParams={params}
-          />
-        )}
+          {/* Active Filters Display (Server Component) */}
+          {hasActiveFilters && showListSection && (
+            <ActiveFiltersDisplay 
+              filters={activeFilters} 
+              searchParams={params}
+            />
+          )}
+        </div>
 
         {/* Main Departments Hub View (Server Component) */}
         {isHubView && (

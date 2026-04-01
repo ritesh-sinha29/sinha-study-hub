@@ -30,7 +30,7 @@ export const DepartmentPills = ({ activeDepartment, searchParams }: DepartmentPi
     <motion.div 
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
-      className="mb-8 overflow-x-auto pb-2 scrollbar-hide"
+      className="overflow-x-auto pb-2 scrollbar-hide"
     >
       <div className="flex flex-nowrap gap-3">
         <Link

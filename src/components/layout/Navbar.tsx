@@ -14,13 +14,25 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useConvexAuth, useMutation, useQuery } from "convex/react";
-import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, useUser, useClerk } from "@clerk/nextjs";
 import { api } from "../../../convex/_generated/api";
 import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { LayoutDashboard, LogOut, Settings, ChevronDown } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isSignedIn, user: clerkUser } = useUser();
+  const { signOut } = useClerk();
   const { isAuthenticated } = useConvexAuth();
   const storeUser = useMutation(api.users.store);
   const currentUser = useQuery(api.users.currentUser);
@@ -59,7 +71,7 @@ const Navbar = () => {
             </motion.div>
             <div className="hidden sm:block">
               <h1 className="text-base font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent leading-tight">
-                STUDY HUB
+                SINHA'S STUDY HUB
               </h1>
               <p className="text-xs text-gray-500 dark:text-gray-400 leading-tight">
                 GTU Resources
@@ -105,7 +117,54 @@ const Navbar = () => {
                     </div>
                   </div>
                 )}
-                <UserButton />
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    render={
+                      <button className="flex items-center gap-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none border border-transparent hover:border-gray-200 dark:hover:border-gray-700">
+                        <Avatar className="h-8 w-8 border border-indigo-100 dark:border-indigo-900">
+                          <AvatarImage src={clerkUser?.imageUrl} />
+                          <AvatarFallback className="bg-indigo-600 text-white text-xs">
+                            {clerkUser?.firstName?.charAt(0) || clerkUser?.emailAddresses[0]?.emailAddress?.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <ChevronDown className="h-4 w-4 text-gray-500" />
+                      </button>
+                    }
+                  />
+                  <DropdownMenuContent align="end" className="w-56 mt-1 p-2 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-md">
+                    <DropdownMenuGroup>
+                      <DropdownMenuLabel className="flex flex-col p-2">
+                        <span className="text-sm font-bold text-gray-900 dark:text-white">
+                          {clerkUser?.fullName || "Account"}
+                        </span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                          {clerkUser?.primaryEmailAddress?.emailAddress}
+                        </span>
+                      </DropdownMenuLabel>
+                    </DropdownMenuGroup>
+                    <DropdownMenuSeparator className="my-1 bg-gray-100 dark:bg-gray-800" />
+                    <Link to="/profile">
+                      <DropdownMenuItem className="flex items-center gap-2 p-2 rounded-xl cursor-pointer hover:bg-indigo-50 dark:hover:bg-indigo-900/20 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                        <User className="h-4 w-4" />
+                        <span className="font-medium">My Profile</span>
+                      </DropdownMenuItem>
+                    </Link>
+                    <Link to="/dashboard">
+                      <DropdownMenuItem className="flex items-center gap-2 p-2 rounded-xl cursor-pointer hover:bg-indigo-50 dark:hover:bg-indigo-900/20 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                        <LayoutDashboard className="h-4 w-4" />
+                        <span className="font-medium">Dashboard</span>
+                      </DropdownMenuItem>
+                    </Link>
+                    <DropdownMenuSeparator className="my-1 bg-gray-100 dark:bg-gray-800" />
+                    <DropdownMenuItem 
+                      onClick={() => signOut()}
+                      className="flex items-center gap-2 p-2 rounded-xl cursor-pointer hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 transition-colors"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      <span className="font-medium">Sign Out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             ) : (
               <div className="flex items-center space-x-2">
@@ -162,7 +221,36 @@ const Navbar = () => {
                   </Link>
                 );
               })}
-              {!isSignedIn && (
+              {isSignedIn ? (
+                <div className="pt-4 mt-4 border-t border-gray-100 dark:border-gray-800 flex flex-col gap-2">
+                  <Link
+                    to="/profile"
+                    className="flex items-center space-x-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <User className="h-4 w-4" />
+                    <span className="font-medium">My Profile</span>
+                  </Link>
+                  <Link
+                    to="/dashboard"
+                    className="flex items-center space-x-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <LayoutDashboard className="h-4 w-4" />
+                    <span className="font-medium">Dashboard</span>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      signOut();
+                      setIsMenuOpen(false);
+                    }}
+                    className="flex items-center space-x-2 px-3 py-2 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/10 transition-all"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    <span className="font-medium">Sign Out</span>
+                  </button>
+                </div>
+              ) : (
                 <div className="pt-4 flex flex-col gap-2">
                   <SignInButton mode="modal">
                     <button className="w-full text-center py-2 text-gray-600 dark:text-gray-300">

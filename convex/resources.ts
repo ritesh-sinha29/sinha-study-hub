@@ -6,7 +6,8 @@ export const list = query({
   args: { 
     year: v.optional(v.string()), 
     semester: v.optional(v.string()),
-    type: v.optional(v.string())
+    type: v.optional(v.string()),
+    department: v.optional(v.string())
   },
   handler: async (ctx, args) => {
     let q;
@@ -18,10 +19,14 @@ export const list = query({
       q = ctx.db.query("resources");
     }
     
-    const results = await q.order("desc").collect();
+    let results = await q.order("desc").collect();
     
     if (args.type) {
-      return results.filter(r => r.type === args.type);
+      results = results.filter(r => r.type === args.type);
+    }
+
+    if (args.department) {
+      results = results.filter(r => r.department === args.department);
     }
     
     return results;

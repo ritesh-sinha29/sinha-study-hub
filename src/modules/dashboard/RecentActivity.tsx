@@ -38,7 +38,7 @@ export const RecentActivity = () => {
           : []),
         {
           type: "joined",
-          title: "Joined Sinha Study Hub",
+          title: "Joined Sinha's Study HUB",
           subject: "Welcome",
           time: user.joinedAt ? new Date(user.joinedAt).toLocaleDateString() : "Recently",
           icon: Users,

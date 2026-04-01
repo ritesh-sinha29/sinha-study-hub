@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, RotateCcw } from 'lucide-react'
+import { Search } from 'lucide-react'
 import Link from 'next/link'
 
 export const EmptyState = () => {
@@ -12,17 +12,10 @@ export const EmptyState = () => {
       <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
         No resources found
       </h3>
-      <p className="text-gray-600 dark:text-gray-400 max-w-md mb-8">
-        Try adjusting your filters or search terms to find what you're looking for. 
+      <p className="text-gray-600 dark:text-gray-400 max-w-md">
+        Try adjusting your filters or use the back button at the top to clear all selections. 
         We're constantly adding new study materials!
       </p>
-      <Link
-        href="/resources"
-        className="flex items-center space-x-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary-500/20 hover:-translate-y-0.5 active:translate-y-0"
-      >
-        <RotateCcw className="h-4 w-4" />
-        <span>Reset All Filters</span>
-      </Link>
     </div>
   )
 }

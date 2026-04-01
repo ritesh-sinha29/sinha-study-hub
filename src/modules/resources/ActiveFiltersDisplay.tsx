@@ -31,11 +31,11 @@ export const ActiveFiltersDisplay = ({ filters, searchParams }: ActiveFiltersDis
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      className="flex flex-wrap items-center gap-2 mb-6"
+      className="flex flex-wrap items-center gap-3"
     >
-      <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 mr-2">
-        <Filter className="h-4 w-4" />
-        <span>Active Filters:</span>
+      <div className="flex items-center space-x-1.5 text-xs font-bold text-gray-500 dark:text-gray-400 mr-1 py-1">
+        <Filter className="h-3.5 w-3.5" />
+        <span className="uppercase tracking-wider">Active Filters:</span>
       </div>
       
       <AnimatePresence mode="popLayout">
@@ -74,7 +74,7 @@ export const ActiveFiltersDisplay = ({ filters, searchParams }: ActiveFiltersDis
       <motion.div layout>
         <Link
           href="/resources"
-          className="text-xs text-gray-500 hover:text-primary-600 transition-colors ml-2 underline underline-offset-4"
+          className="text-xs font-medium text-gray-500 hover:text-primary-600 transition-colors ml-1 py-1 underline underline-offset-4"
         >
           Clear All
         </Link>
