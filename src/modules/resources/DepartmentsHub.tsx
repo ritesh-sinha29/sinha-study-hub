@@ -44,10 +44,10 @@ export const DepartmentsHub = () => {
       >
         {ENGINEERING_DEPARTMENTS.map((dept) => {
           return (
-            <motion.div key={dept.id} variants={item}>
+            <motion.div key={dept.id} variants={item} whileHover={{ y: -12, scale: 1.02 }} className="h-full">
               <Link
                 href={`/resources?department=${dept.id}`}
-                className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden cursor-pointer border border-transparent hover:border-primary-500/30 transition-all duration-300 h-full flex flex-col hover:-translate-y-2 group"
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden cursor-pointer border border-transparent hover:border-primary-500/30 transition-all duration-300 h-full flex flex-col group"
               >
                 {/* Department Visual Header */}
                 <div className={`bg-gradient-to-br ${dept.color} p-8 flex items-center justify-center relative overflow-hidden`}>

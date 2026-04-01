@@ -88,8 +88,8 @@ export default async function Page({ searchParams }: PageProps) {
           />
         )}
 
-        {/* Department Pills - Only when type is selected (Server Component) */}
-        {type && showListSection && (
+        {/* Department Pills - Only when type is selected and no department is currently selected (Server Component) */}
+        {type && showListSection && !department && (
           <DepartmentPills 
             activeDepartment={department} 
             searchParams={params}

@@ -119,10 +119,10 @@ export const YearSelectionHub = ({ departmentId, searchParams }: YearSelectionHu
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       >
         {ACADEMIC_YEARS.map((year) => (
-          <motion.div key={year.id} variants={item}>
+          <motion.div key={year.id} variants={item} whileHover={{ y: -12 }} className="h-full">
             <Link
               href={getLink(year.id)}
-              className="block group h-full bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-2xl hover:border-primary-500/30 transition-all duration-500 hover:-translate-y-2"
+              className="block group h-full bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-2xl hover:border-primary-500/30 transition-all duration-500"
             >
               <div className={`h-2 bg-gradient-to-r ${year.color}`} />
               

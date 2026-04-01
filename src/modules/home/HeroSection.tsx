@@ -8,7 +8,7 @@ export const HeroSection = () => {
   const router = useRouter()
 
   return (
-    <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 text-white py-24 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 text-white py-16 md:py-20 overflow-hidden">
       <div className="absolute inset-0 bg-black/20"></div>
       
       {/* Animated background patterns */}
@@ -24,21 +24,21 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8">
-              <span className="relative flex h-2 w-2">
+            <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-6">
+              <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-yellow-500"></span>
               </span>
-              <span className="text-xs font-bold uppercase tracking-widest text-white/90">Trusted by 10,000+ Students</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Trusted by 10,000+ Students</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight leading-[1.1]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight leading-[1.1]">
               Elevate Your{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-300 animate-gradient-x">
                 GTU Journey
               </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-12 text-blue-50/90 leading-relaxed font-medium">
+            <p className="text-lg md:text-xl mb-10 text-blue-50/90 leading-relaxed font-medium">
               Your ultimate destination for curated study resources, vibrant community support, and academic excellence in engineering.
             </p>
           </motion.div>
@@ -51,14 +51,14 @@ export const HeroSection = () => {
           >
             <button
               onClick={() => router.push('/resources')}
-              className="w-full sm:w-auto bg-white text-primary-700 px-10 py-5 rounded-2xl font-bold hover:bg-blue-50 transition-all flex items-center justify-center space-x-3 shadow-2xl shadow-primary-900/20 active:scale-95 group"
+              className="w-full sm:w-auto bg-white text-primary-700 px-8 py-3.5 rounded-xl font-bold hover:bg-blue-50 transition-all flex items-center justify-center space-x-2 shadow-xl shadow-primary-900/20 active:scale-95 group text-sm md:text-base"
             >
               <span>Explore Resources</span>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={() => router.push('/auth/register')}
-              className="w-full sm:w-auto border-2 border-white/30 backdrop-blur-sm text-white px-10 py-5 rounded-2xl font-bold hover:bg-white hover:text-primary-700 transition-all flex items-center justify-center active:scale-95 shadow-xl"
+              className="w-full sm:w-auto border border-white/30 backdrop-blur-sm text-white px-8 py-3.5 rounded-xl font-bold hover:bg-white hover:text-primary-700 transition-all flex items-center justify-center active:scale-95 shadow-lg text-sm md:text-base"
             >
               Join Our Community
             </button>
