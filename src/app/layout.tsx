@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ConvexClientProvider } from "@/components/providers/ConvexClientProvider";
+import { ErrorFilter } from "@/components/providers/ErrorFilter";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,13 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light" style={{ colorScheme: 'light' }} suppressHydrationWarning>
+    <html lang="en" className="light" style={{ colorScheme: 'light' }} suppressHydrationWarning translate="no">
       <body className="bg-white text-gray-900">
-        <ConvexClientProvider>
-          <TooltipProvider>
-            {children}
-          </TooltipProvider>
-        </ConvexClientProvider>
+        <ErrorFilter>
+          <ConvexClientProvider>
+            <TooltipProvider>
+              {children}
+            </TooltipProvider>
+          </ConvexClientProvider>
+        </ErrorFilter>
         <Toaster
           position="top-right"
           toastOptions={{

@@ -21,8 +21,19 @@ function Tooltip({ ...props }: TooltipPrimitive.Root.Props) {
   return <TooltipPrimitive.Root data-slot="tooltip" {...props} />
 }
 
-function TooltipTrigger({ ...props }: TooltipPrimitive.Trigger.Props) {
-  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
+function TooltipTrigger({
+  render,
+  ...props
+}: Omit<TooltipPrimitive.Trigger.Props, "render"> & {
+  render?: React.ReactElement | ((props: any, state: any) => React.ReactNode)
+}) {
+  return (
+    <TooltipPrimitive.Trigger
+      data-slot="tooltip-trigger"
+      render={render as any}
+      {...props}
+    />
+  )
 }
 
 function TooltipContent({

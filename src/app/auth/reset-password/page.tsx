@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { BookOpen, Lock, ArrowLeft, CheckCircle, Eye, EyeOff } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { useAuthStore } from '../../../store/authStore'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 
 interface ResetPasswordForm {
     password: string
@@ -273,5 +273,9 @@ const ResetPassword = () => {
 }
 
 export default function Page() {
-    return <ResetPassword />
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ResetPassword />
+        </Suspense>
+    )
 }

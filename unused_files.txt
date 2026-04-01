@@ -1,0 +1,123 @@
+[93m[4mUnused files[24m[39m (71)
+src/store/themeStore.ts                             
+src/components/ai-elements/agent.tsx                
+src/components/ai-elements/artifact.tsx             
+src/components/ai-elements/attachments.tsx          
+src/components/ai-elements/audio-player.tsx         
+src/components/ai-elements/canvas.tsx               
+src/components/ai-elements/chain-of-thought.tsx     
+src/components/ai-elements/checkpoint.tsx           
+src/components/ai-elements/code-block.tsx           
+src/components/ai-elements/commit.tsx               
+src/components/ai-elements/confirmation.tsx         
+src/components/ai-elements/connection.tsx           
+src/components/ai-elements/context.tsx              
+src/components/ai-elements/controls.tsx             
+src/components/ai-elements/conversation.tsx         
+src/components/ai-elements/edge.tsx                 
+src/components/ai-elements/environment-variables.tsx
+src/components/ai-elements/file-tree.tsx            
+src/components/ai-elements/image.tsx                
+src/components/ai-elements/inline-citation.tsx      
+src/components/ai-elements/jsx-preview.tsx          
+src/components/ai-elements/message.tsx              
+src/components/ai-elements/mic-selector.tsx         
+src/components/ai-elements/model-selector.tsx       
+src/components/ai-elements/node.tsx                 
+src/components/ai-elements/open-in-chat.tsx         
+src/components/ai-elements/package-info.tsx         
+src/components/ai-elements/panel.tsx                
+src/components/ai-elements/persona.tsx              
+src/components/ai-elements/plan.tsx                 
+src/components/ai-elements/prompt-input.tsx         
+src/components/ai-elements/queue.tsx                
+src/components/ai-elements/reasoning.tsx            
+src/components/ai-elements/sandbox.tsx              
+src/components/ai-elements/schema-display.tsx       
+src/components/ai-elements/shimmer.tsx              
+src/components/ai-elements/snippet.tsx              
+src/components/ai-elements/sources.tsx              
+src/components/ai-elements/speech-input.tsx         
+src/components/ai-elements/stack-trace.tsx          
+src/components/ai-elements/suggestion.tsx           
+src/components/ai-elements/task.tsx                 
+src/components/ai-elements/terminal.tsx             
+src/components/ai-elements/test-results.tsx         
+src/components/ai-elements/tool.tsx                 
+src/components/ai-elements/toolbar.tsx              
+src/components/ai-elements/transcription.tsx        
+src/components/ai-elements/voice-selector.tsx       
+src/components/ai-elements/web-preview.tsx          
+src/components/ui/accordion.tsx                     
+src/components/ui/alert.tsx                         
+src/components/ui/badge.tsx                         
+src/components/ui/button-group.tsx                  
+src/components/ui/button.tsx                        
+src/components/ui/card.tsx                          
+src/components/ui/carousel.tsx                      
+src/components/ui/collapsible.tsx                   
+src/components/ui/command.tsx                       
+src/components/ui/dialog.tsx                        
+src/components/ui/hover-card.tsx                    
+src/components/ui/input-group.tsx                   
+src/components/ui/input.tsx                         
+src/components/ui/popover.tsx                       
+src/components/ui/progress.tsx                      
+src/components/ui/scroll-area.tsx                   
+src/components/ui/select.tsx                        
+src/components/ui/separator.tsx                     
+src/components/ui/spinner.tsx                       
+src/components/ui/switch.tsx                        
+src/components/ui/tabs.tsx                          
+src/components/ui/textarea.tsx                      
+[93m[4mUnused dependencies[24m[39m (24)
+@ai-sdk/react                           package.json:12:6
+@radix-ui/react-use-controllable-state  package.json:15:6
+@rive-app/react-webgl2                  package.json:16:6
+@streamdown/cjk                         package.json:17:6
+@streamdown/code                        package.json:18:6
+@streamdown/math                        package.json:19:6
+@streamdown/mermaid                     package.json:20:6
+@xyflow/react                           package.json:21:6
+ai                                      package.json:22:6
+ansi-to-react                           package.json:23:6
+class-variance-authority                package.json:24:6
+cmdk                                    package.json:26:6
+embla-carousel-react                    package.json:28:6
+media-chrome                            package.json:31:6
+motion                                  package.json:32:6
+nanoid                                  package.json:33:6
+react-jsx-parser                        package.json:39:6
+shadcn                                  package.json:40:6
+shiki                                   package.json:41:6
+streamdown                              package.json:42:6
+svix                                    package.json:43:6
+tokenlens                               package.json:45:6
+tw-animate-css                          package.json:46:6
+use-stick-to-bottom                     package.json:47:6
+[93m[4mUnlisted dependencies[24m[39m (1)
+postcss  postcss.config.mjs
+[93m[4mUnused exports[24m[39m (17)
+Tooltip                             src/components/ui/tooltip.tsx:77:10      
+TooltipTrigger                      src/components/ui/tooltip.tsx:77:19      
+TooltipContent                      src/components/ui/tooltip.tsx:77:35      
+useParams                 function  src/lib/router.tsx:27:17                 
+DropdownMenuPortal                  src/components/ui/dropdown-menu.tsx:268:3
+DropdownMenuCheckboxItem            src/components/ui/dropdown-menu.tsx:274:3
+DropdownMenuRadioGroup              src/components/ui/dropdown-menu.tsx:275:3
+DropdownMenuRadioItem               src/components/ui/dropdown-menu.tsx:276:3
+DropdownMenuShortcut                src/components/ui/dropdown-menu.tsx:278:3
+DropdownMenuSub                     src/components/ui/dropdown-menu.tsx:279:3
+DropdownMenuSubTrigger              src/components/ui/dropdown-menu.tsx:280:3
+DropdownMenuSubContent              src/components/ui/dropdown-menu.tsx:281:3
+AvatarGroup                         src/components/ui/avatar.tsx:106:3       
+AvatarGroupCount                    src/components/ui/avatar.tsx:107:3       
+AvatarBadge                         src/components/ui/avatar.tsx:108:3       
+sendEmailWithSimpleAPI              src/utils/emailService.ts:55:14          
+initializeEmailJS                   src/utils/emailService.ts:89:14          
+[93m[4mUnused exported types[24m[39m (4)
+User       interface  src/store/authStore.ts:6:18     
+Analytics  interface  src/store/analyticsStore.ts:4:18
+EmailData  interface  src/utils/emailService.ts:1:18  
+Resource   interface  src/store/resourceStore.ts:5:18 
+[33m[4mConfiguration hints[24m (1)[39m
