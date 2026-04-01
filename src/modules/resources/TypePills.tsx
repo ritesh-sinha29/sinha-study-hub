@@ -33,17 +33,6 @@ export const TypePills = ({ activeType, searchParams }: TypePillsProps) => {
       className="mb-8"
     >
       <div className="flex flex-wrap gap-3">
-        <Link
-          href={getLink('')}
-          className={cn(
-            "flex items-center space-x-2 px-4 py-2 rounded-full transition-colors",
-            !activeType
-              ? "bg-primary-600 text-white shadow-lg"
-              : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-sm"
-          )}
-        >
-          <span>All Resources</span>
-        </Link>
         {RESOURCE_TYPES.map((type, idx) => {
           const Icon = type.icon
           return (

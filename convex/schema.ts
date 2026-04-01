@@ -5,19 +5,24 @@ export default defineSchema({
   users: defineTable({
     name: v.string(),
     email: v.string(),
-    registrationId: v.string(),
-    year: v.string(),
-    branch: v.string(),
+    tokenIdentifier: v.string(), // Clerk's userId
+    registrationId: v.optional(v.string()),
+    year: v.optional(v.string()),
+    branch: v.optional(v.string()),
     avatar: v.optional(v.string()),
     points: v.number(),
     streak: v.number(),
+    lastStudyDate: v.optional(v.string()),
     joinedAt: v.string(),
-    // NOTE: for now this mirrors your current demo app which stores passwords client-side.
-    // In production, never store raw passwords; use a real auth provider.
-    password: v.string(),
+    favorites: v.array(v.string()), // Array of resource IDs
+    achievements: v.object({
+      topContributor: v.boolean(),
+      studyStreak: v.boolean(),
+      helpfulMember: v.boolean(),
+    }),
   })
-    .index("by_email", ["email"])
-    .index("by_registrationId", ["registrationId"]),
+    .index("by_token", ["tokenIdentifier"])
+    .index("by_email", ["email"]),
 
   resources: defineTable({
     title: v.string(),
@@ -38,7 +43,8 @@ export default defineSchema({
     fileUrl: v.optional(v.string()),
     videoUrl: v.optional(v.string()),
     thumbnailUrl: v.optional(v.string()),
-    uploadedBy: v.string(),
+    uploadedBy: v.string(), // Clerk ID
+    uploadedByName: v.string(),
     uploadedAt: v.string(),
     downloads: v.number(),
     rating: v.number(),
@@ -50,7 +56,7 @@ export default defineSchema({
 
   comments: defineTable({
     resourceId: v.string(),
-    userId: v.string(),
+    userId: v.string(), // Clerk ID
     userName: v.string(),
     userAvatar: v.optional(v.string()),
     content: v.string(),
@@ -59,5 +65,12 @@ export default defineSchema({
     downvotes: v.number(),
     parentCommentId: v.optional(v.string()),
   }).index("by_resource", ["resourceId"]),
+
+  globalStats: defineTable({
+    totalUsers: v.number(),
+    totalDownloads: v.number(),
+    totalResources: v.number(),
+    averageRating: v.number(),
+  }),
 });
 

@@ -1,18 +1,19 @@
 "use client";
 
-import { useState } from 'react'
-import { ProfileHeader } from "@/modules/profile/ProfileHeader"
-import { EditProfileForm } from "@/modules/profile/EditProfileForm"
-import { UserAchievements } from "@/modules/profile/UserAchievements"
-import { ProfileRecentActivity } from "@/modules/profile/ProfileRecentActivity"
-import { useAuthStore } from '@/store/authStore'
-import { AnimatePresence } from 'framer-motion'
+import { useState } from "react";
+import { ProfileHeader } from "@/modules/profile/ProfileHeader";
+import { EditProfileForm } from "@/modules/profile/EditProfileForm";
+import { UserAchievements } from "@/modules/profile/UserAchievements";
+import { ProfileRecentActivity } from "@/modules/profile/ProfileRecentActivity";
+import { useUser } from "@clerk/nextjs";
+import { AnimatePresence } from "framer-motion";
 
 const Profile = () => {
-  const [isEditing, setIsEditing] = useState(false)
-  const { user } = useAuthStore()
+  const [isEditing, setIsEditing] = useState(false);
+  const { user, isLoaded } = useUser();
 
-  if (!user) return null
+  if (!isLoaded) return null;
+  if (!user) return null;
 
   return (
     <div className="min-h-screen bg-gray-50/50 dark:bg-gray-900/50 py-12">
@@ -36,9 +37,9 @@ const Profile = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default function Page() {
-  return <Profile />
+  return <Profile />;
 }

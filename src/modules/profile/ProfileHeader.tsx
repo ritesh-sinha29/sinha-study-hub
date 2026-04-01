@@ -1,63 +1,60 @@
 "use client";
 
-import { motion } from 'framer-motion'
-import { Edit, Upload, Download, Calendar, Award } from 'lucide-react'
-import { useAuthStore } from '@/store/authStore'
-import { useAnalyticsStore } from '@/store/analyticsStore'
+import { motion } from "framer-motion";
+import { Edit, Upload, Download, Calendar, Award } from "lucide-react";
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 interface ProfileHeaderProps {
   onEditClick: () => void;
 }
 
 export const ProfileHeader = ({ onEditClick }: ProfileHeaderProps) => {
-  const { user } = useAuthStore()
-  const { getUserAnalytics } = useAnalyticsStore()
+  const user = useQuery(api.users.currentUser);
 
-  if (!user) return null
-
-  const userAnalytics = getUserAnalytics(user.id)
+  if (!user) return null;
 
   const stats = [
     {
-      label: 'Resources Uploaded',
-      value: userAnalytics?.resourcesUploaded || 0,
+      label: "Resources Uploaded",
+      value: 0, // Placeholder until upload functionality is migrated
       icon: Upload,
-      color: 'text-green-600 dark:text-green-400',
-      bgColor: 'bg-green-50 dark:bg-green-900/20'
+      color: "text-green-600 dark:text-green-400",
+      bgColor: "bg-green-50 dark:bg-green-900/20",
     },
     {
-      label: 'Downloads',
-      value: userAnalytics?.totalDownloads || 0,
+      label: "Practiced",
+      value: user.points ? Math.floor(user.points / 10) : 0,
       icon: Download,
-      color: 'text-blue-600 dark:text-blue-400',
-      bgColor: 'bg-blue-50 dark:bg-blue-900/20'
+      color: "text-blue-600 dark:text-blue-400",
+      bgColor: "bg-blue-50 dark:bg-blue-900/20",
     },
     {
-      label: 'Study Streak',
-      value: userAnalytics?.studyStreak || 0,
+      label: "Study Streak",
+      value: user.streak || 0,
       icon: Calendar,
-      color: 'text-orange-600 dark:text-orange-400',
-      bgColor: 'bg-orange-50 dark:bg-orange-900/20'
+      color: "text-orange-600 dark:text-orange-400",
+      bgColor: "bg-orange-50 dark:bg-orange-900/20",
     },
     {
-      label: 'Community Points',
-      value: userAnalytics?.totalUpvotes || 0,
+      label: "Points",
+      value: user.points || 0,
       icon: Award,
-      color: 'text-purple-600 dark:text-purple-400',
-      bgColor: 'bg-purple-50 dark:bg-purple-900/20'
-    }
-  ]
+      color: "text-purple-600 dark:text-purple-400",
+      bgColor: "bg-purple-50 dark:bg-purple-900/20",
+    },
+  ];
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="card p-8 mb-8 border-none shadow-2xl shadow-gray-200/50 dark:shadow-none bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl"
+      className="card p-8 mb-8 border-none shadow-2xl shadow-gray-200/50 dark:shadow-none bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl"
     >
       <div className="flex flex-col md:flex-row items-center justify-between mb-10 space-y-6 md:space-y-0 text-center md:text-left">
         <div className="flex flex-col md:flex-row items-center md:space-x-8 space-y-4 md:space-y-0">
           {/* Avatar */}
-          <div className="w-28 h-28 bg-gradient-to-tr from-primary-600 to-secondary-500 rounded-3xl flex items-center justify-center shadow-xl shadow-primary-500/20 rotate-3 hover:rotate-0 transition-transform duration-300">
+          <div className="w-28 h-28 bg-gradient-to-tr from-indigo-600 to-purple-500 rounded-3xl flex items-center justify-center shadow-xl shadow-indigo-500/20 rotate-3 hover:rotate-0 transition-transform duration-300">
             <span className="text-4xl font-black text-white">
               {user.name.charAt(0).toUpperCase()}
             </span>
@@ -73,7 +70,10 @@ export const ProfileHeader = ({ onEditClick }: ProfileHeaderProps) => {
                 {user.registrationId} • {user.branch}
               </p>
               <p className="text-gray-400 dark:text-gray-500 text-sm font-medium">
-                {user.year} • Member since {new Date(user.joinedAt).toLocaleDateString()}
+                {user.year} • Member since{" "}
+                {user.joinedAt
+                  ? new Date(user.joinedAt).toLocaleDateString()
+                  : "Recently"}
               </p>
             </div>
           </div>
@@ -92,10 +92,15 @@ export const ProfileHeader = ({ onEditClick }: ProfileHeaderProps) => {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {stats.map((stat) => {
-          const Icon = stat.icon
+          const Icon = stat.icon;
           return (
-            <div key={stat.label} className="group p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
-              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3 ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform`}>
+            <div
+              key={stat.label}
+              className="group p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors"
+            >
+              <div
+                className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3 ${stat.bgColor} ${stat.color} group-hover:scale-110 transition-transform`}
+              >
                 <Icon className="h-6 w-6" />
               </div>
               <div className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">
@@ -105,9 +110,9 @@ export const ProfileHeader = ({ onEditClick }: ProfileHeaderProps) => {
                 {stat.label}
               </div>
             </div>
-          )
+          );
         })}
       </div>
     </motion.div>
-  )
-}
+  );
+};

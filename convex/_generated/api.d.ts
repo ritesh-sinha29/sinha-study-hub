@@ -10,6 +10,7 @@
 
 import type * as comments from "../comments.js";
 import type * as resources from "../resources.js";
+import type * as users from "../users.js";
 
 import type {
   ApiFromModules,
@@ -20,6 +21,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   comments: typeof comments;
   resources: typeof resources;
+  users: typeof users;
 }>;
 
 /**

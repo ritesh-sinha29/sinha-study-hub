@@ -77,21 +77,7 @@ export const FilterBar = ({
 
   return (
     <div className="mb-8 space-y-4">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        {/* Search Bar */}
-        <div className="relative flex-1 group">
-          <Search className={cn(
-            "absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 transition-colors",
-            isPending ? "text-primary-500 animate-pulse" : "text-gray-400 group-focus-within:text-primary-500"
-          )} />
-          <input
-            type="text"
-            placeholder="Search by title, subject, or topic..."
-            value={localSearch}
-            onChange={(e) => handleSearchChange(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all shadow-sm"
-          />
-        </div>
+      <div className="flex flex-col md:flex-row md:items-center justify-end gap-4">
 
         <div className="flex items-center space-x-3">
           {/* View Toggles */}

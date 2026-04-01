@@ -45,26 +45,6 @@ const Footer = () => {
                   Join Community
                 </Link>
               </li>
-              <li>
-                <Link to="/year/first-year" className="text-gray-300 hover:text-white transition-colors">
-                  First Year
-                </Link>
-              </li>
-              <li>
-                <Link to="/year/second-year" className="text-gray-300 hover:text-white transition-colors">
-                  Second Year
-                </Link>
-              </li>
-              <li>
-                <Link to="/year/third-year" className="text-gray-300 hover:text-white transition-colors">
-                  Third Year
-                </Link>
-              </li>
-              <li>
-                <Link to="/year/final-year" className="text-gray-300 hover:text-white transition-colors">
-                  Final Year
-                </Link>
-              </li>
             </ul>
           </div>
 

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { BookOpen, Users, GraduationCap, ChevronRight, Star } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 interface YearSelectionHubProps {
@@ -15,8 +16,7 @@ const ACADEMIC_YEARS = [
     shortName: 'First Year (FY)',
     fullName: 'First Year (FY)',
     description: 'Foundation courses and basic engineering subjects',
-    subjects: ['Mathematics', 'Physics', 'Chemistry'],
-    extraSubjects: 1,
+    semesters: ['Sem 1', 'Sem 2'],
     stats: {
       students: '3,500+',
       resources: '1,200+',
@@ -29,8 +29,7 @@ const ACADEMIC_YEARS = [
     shortName: 'Second Year (SY)',
     fullName: 'Second Year (SY)',
     description: 'Core engineering fundamentals and programming',
-    subjects: ['Data Structures', 'Digital Electronics', 'Thermodynamics'],
-    extraSubjects: 1,
+    semesters: ['Sem 3', 'Sem 4'],
     stats: {
       students: '4,200+',
       resources: '1,800+',
@@ -43,8 +42,7 @@ const ACADEMIC_YEARS = [
     shortName: 'Third Year (TY)',
     fullName: 'Third Year (TY)',
     description: 'Advanced topics and specialization subjects',
-    subjects: ['Database Systems', 'Computer Networks', 'Software Engineering'],
-    extraSubjects: 1,
+    semesters: ['Sem 5', 'Sem 6'],
     stats: {
       students: '3,800+',
       resources: '2,100+',
@@ -57,8 +55,7 @@ const ACADEMIC_YEARS = [
     shortName: 'Final Year (BE)',
     fullName: 'Final Year (BE)',
     description: 'Capstone projects and industry-ready skills',
-    subjects: ['Machine Learning', 'Cloud Computing', 'Project Work'],
-    extraSubjects: 1,
+    semesters: ['Sem 7', 'Sem 8'],
     stats: {
       students: '3,100+',
       resources: '1,500+',
@@ -69,7 +66,8 @@ const ACADEMIC_YEARS = [
 ]
 
 export const YearSelectionHub = ({ departmentId, searchParams }: YearSelectionHubProps) => {
-  const getLink = (year: string) => {
+  const router = useRouter()
+  const getLink = (year: string, semester?: string) => {
     const params = new URLSearchParams()
     if (searchParams) {
       Object.entries(searchParams).forEach(([key, value]) => {
@@ -79,6 +77,9 @@ export const YearSelectionHub = ({ departmentId, searchParams }: YearSelectionHu
       })
     }
     params.set('year', year)
+    if (semester) {
+      params.set('semester', semester)
+    }
     return `/resources?${params.toString()}`
   }
 
@@ -120,8 +121,7 @@ export const YearSelectionHub = ({ departmentId, searchParams }: YearSelectionHu
       >
         {ACADEMIC_YEARS.map((year) => (
           <motion.div key={year.id} variants={item} whileHover={{ y: -12 }} className="h-full">
-            <Link
-              href={getLink(year.id)}
+            <div
               className="block group h-full bg-white dark:bg-gray-800 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-2xl hover:border-primary-500/30 transition-all duration-500"
             >
               <div className={`h-2 bg-gradient-to-r ${year.color}`} />
@@ -144,20 +144,24 @@ export const YearSelectionHub = ({ departmentId, searchParams }: YearSelectionHu
                   {year.description}
                 </p>
 
-                <div className="space-y-3 mb-8">
-                  {year.subjects.map((subject, idx) => (
-                    <div key={idx} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary-500 mr-2.5" />
-                      <span className="font-medium">{subject}</span>
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  {year.semesters.map((sem) => (
+                    <div 
+                      key={sem} 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const semNum = sem.split(' ')[1];
+                        router.push(getLink(year.id, `sem${semNum}`));
+                      }}
+                      className="px-4 py-5 rounded-2xl bg-gray-50/50 dark:bg-gray-700/30 border border-gray-100 dark:border-gray-700 flex items-center justify-center text-center cursor-pointer hover:border-primary-500/40 transition-all duration-300 shadow-sm hover:shadow-md hover:bg-white dark:hover:bg-gray-700/50 active:scale-95"
+                    >
+                      <span className="text-sm font-bold text-gray-900 dark:text-white tracking-tight">{sem}</span>
                     </div>
                   ))}
-                  <div className="text-xs text-primary-600 dark:text-primary-400 font-bold ml-4">
-                    +{year.extraSubjects} more subjects
-                  </div>
                 </div>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-3 gap-2 py-6 border-t border-b border-gray-50 dark:border-gray-700/50 mb-6">
+                <div className="grid grid-cols-3 gap-2 py-6 border-t border-b border-gray-50 dark:border-gray-700/50">
                   <div className="text-center">
                     <p className="text-sm font-bold text-gray-900 dark:text-white">{year.stats.students}</p>
                     <p className="text-[10px] text-gray-500 dark:text-gray-400 font-medium uppercase tracking-tighter">Students</p>
@@ -171,13 +175,8 @@ export const YearSelectionHub = ({ departmentId, searchParams }: YearSelectionHu
                     <p className="text-[10px] text-gray-500 dark:text-gray-400 font-medium uppercase tracking-tighter">Subjects</p>
                   </div>
                 </div>
-
-                <div className="flex items-center justify-center space-x-2 text-primary-600 dark:text-primary-400 font-bold text-sm group-hover:translate-x-1 transition-transform">
-                  <span>Explore Year</span>
-                  <ChevronRight className="w-4 h-4" />
-                </div>
               </div>
-            </Link>
+            </div>
           </motion.div>
         ))}
       </motion.div>

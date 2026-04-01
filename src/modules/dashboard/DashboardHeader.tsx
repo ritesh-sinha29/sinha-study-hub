@@ -1,10 +1,12 @@
 "use client";
 
-import { motion } from 'framer-motion'
-import { useAuthStore } from '@/store/authStore'
+import { motion } from "framer-motion";
+import { useUser } from "@clerk/nextjs";
 
 export const DashboardHeader = () => {
-  const { user } = useAuthStore()
+  const { user, isLoaded } = useUser();
+
+  if (!isLoaded) return null;
 
   return (
     <motion.div
@@ -13,11 +15,11 @@ export const DashboardHeader = () => {
       className="mb-8"
     >
       <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-        Welcome back, {user?.name}! 👋
+        Welcome back, {user?.firstName || "Student"}! 👋
       </h1>
       <p className="text-gray-600 dark:text-gray-400">
         Here's what's happening with your studies today
       </p>
     </motion.div>
-  )
-}
+  );
+};
